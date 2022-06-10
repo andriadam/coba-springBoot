@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/v1/transaksi/")
+@RequestMapping("/v1/transaksi")
 public class TransaksiController {
+    @Autowired
+    public TransaksiService service;
 
     @Autowired
     public TransaksiRepository repo;
-    @Autowired
-    public TransaksiService service;
+
 
     @PostMapping("")
     public ResponseEntity<Map> save(@RequestBody Transaksi objModel) {
