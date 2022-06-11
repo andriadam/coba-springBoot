@@ -26,37 +26,27 @@ public class TransaksiController {
     @PostMapping("")
     public ResponseEntity<Map> save(@RequestBody Transaksi objModel) {
         Map save = service.save(objModel);
-        Map map = new HashMap();
-        map.put("data",save);
-        map.put("status", "sukses");
-        map.put("code", "200");
-        return new ResponseEntity<Map>(map, HttpStatus.OK);
+        return new ResponseEntity<Map>(save, HttpStatus.OK);
     }
 
     @PutMapping("")
     public ResponseEntity<Map> updateStatus(@RequestBody Transaksi objModel) {
         Map save = service.updateStatus(objModel);
-        Map map = new HashMap();
-        map.put("data",save);
-        map.put("status", "sukses");
-        map.put("code", "200");
-        return new ResponseEntity<Map>(map, HttpStatus.OK);
+        return new ResponseEntity<Map>(save, HttpStatus.OK);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Map> getListData(
+    public ResponseEntity<Page<Transaksi>> getListData(
             @RequestParam() Integer page,
             @RequestParam() Integer size,
             @RequestParam(required = false) String status) {
         Pageable show_data = PageRequest.of(page, size);
         Page<Transaksi> list = null;
         if (status != null) {
-            repo.getByStatus(status, show_data);
+            list = repo.getByStatus(status, show_data);
         } else {
-            repo.getAllData(show_data);
+            list = repo.getAllData(show_data);
         }
-        Map map = new HashMap();
-        map.put("content", list);
-        return new ResponseEntity<Map>(map, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<Page<Transaksi>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 }

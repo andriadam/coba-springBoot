@@ -18,16 +18,16 @@ public class TestingController {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Test
-    public void restTemplateSave() throws Exception {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", "*/*");
-        headers.set("Content-Type", "application/json");
-        String bodyTesting = "{\"id\":2,\"bunga_persen\":20,\"id_meminjam\":1,\"id_peminjam\":1,\"status\":\"lunas\",\"tenor\":12,\"total_pinjaman\":100000,\"payment_history_id\":1,\"user_id\":1}";
-        HttpEntity<String> entity = new HttpEntity<String>(bodyTesting, headers);
-        ResponseEntity<String> exchange = restTemplate.exchange
-                ("http://localhost:8081/api/v1/transaksi", HttpMethod.POST, entity, String.class);
-        assertEquals(HttpStatus.OK, exchange.getStatusCode());
-        System.out.println("response =" + exchange.getBody());
-    }
+//    @Test
+//    public void restTemplateSave() throws Exception {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", "*/*");
+//        headers.set("Content-Type", "application/json");
+//        String bodyTesting = "{\"id\":2,\"bunga_persen\":20,\"id_meminjam\":1,\"id_peminjam\":1,\"status\":\"lunas\",\"tenor\":12,\"total_pinjaman\":100000,\"payment_history_id\":1,\"user_id\":1}";
+//        HttpEntity<String> entity = new HttpEntity<String>(bodyTesting, headers);
+//        ResponseEntity<String> exchange = restTemplate.exchange
+//                ("http://localhost:8081/api/v1/transaksi", HttpMethod.POST, entity, String.class);
+//        assertEquals(HttpStatus.OK, exchange.getStatusCode());
+//        System.out.println("response =" + exchange.getBody());
+//    }
 }

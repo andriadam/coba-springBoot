@@ -21,8 +21,8 @@ public class TransaksiPaymentImple implements TransaksiService {
         try {
             Transaksi obj = repo.save(transaksi);
             map.put("data", obj);
-            map.put("statusCode", "200");
-            map.put("statusMessage", "Sukses");
+            map.put("code", "200");
+            map.put("status", "sukses");
             return map;
 
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class TransaksiPaymentImple implements TransaksiService {
     public Map updateStatus(Transaksi transaksi) {
         Map map = new HashMap();
         try {
-            Transaksi update = repo.getById(transaksi.getId());
+            Transaksi update = repo.getByID(transaksi.getId());
             update.setStatus(transaksi.getStatus());
             Transaksi doSave = repo.save(update);
             map.put("data", doSave);
